@@ -8,9 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+  
+  @State private var isPresented: Bool = false
+  
     var body: some View {
+      VStack {
         Text("Hello, world!")
-            .padding()
+      }
+      
+      .sheet(isPresented: $isPresented, content: {
+        AddStoreView()
+      })
+      .navigationBarItems(trailing: Button(action: {
+        isPresented = true
+      }, label: {
+        Image(systemName: "plus")
+      }))
+      .navigationTitle("Grocery App")
+      .embedInNavigationView()
     }
 }
 
